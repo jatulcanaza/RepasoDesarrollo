@@ -1,0 +1,126 @@
+/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;  /* Establece la fuente para todo el cuerpo de la página */
+    margin: 0;  /* Elimina los márgenes por defecto */
+    padding: 0;  /* Elimina los rellenos por defecto */
+    display: flex;  /* Utiliza flexbox para centrar el contenido */
+    justify-content: center;  /* Centra el contenido horizontalmente */
+    align-items: center;  /* Centra el contenido verticalmente */
+    height: 100vh;  /* Establece la altura del cuerpo al 100% de la ventana */
+    background: linear-gradient(135deg, #B497D6, #9E6AC3);  /* Fondo degradado con colores lilas */
+    color: #333;  /* Color del texto en gris oscuro */
+}
+
+.container {
+    text-align: center;  /* Centra el texto dentro del contenedor */
+    background: white;  /* Fondo blanco para el contenedor */
+    padding: 2rem;  /* Relleno de 2rem alrededor del contenedor */
+    border-radius: 15px;  /* Bordes redondeados */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);  /* Sombra para dar efecto de profundidad */
+    max-width: 500px;  /* Establece un ancho máximo para el contenedor */
+    width: 100%;  /* El contenedor ocupa todo el ancho disponible */
+}
+
+h1 {
+    font-size: 2.5rem;  /* Establece el tamaño de la fuente para el título principal */
+    color: #444;  /* Color de texto gris oscuro */
+    margin-bottom: 0.5rem;  /* Espacio debajo del título */
+}
+
+.subtitle {
+    font-size: 1rem;  /* Establece el tamaño de la fuente para el subtítulo */
+    color: #777;  /* Color de texto gris claro */
+    margin-bottom: 2rem;  /* Espacio debajo del subtítulo */
+}
+
+/* Área de subida de PDF */
+.upload-section {
+    display: flex;  /* Utiliza flexbox para alinear los elementos */
+    flex-direction: column;  /* Los elementos se colocan en una columna */
+    gap: 1rem;  /* Espacio entre los elementos */
+    align-items: center;  /* Alinea los elementos al centro */
+}
+
+.custom-file-upload {
+    padding: 1rem 2rem;  /* Relleno alrededor del botón */
+    font-size: 1rem;  /* Establece el tamaño de la fuente del botón */
+    color: white;  /* Color del texto del botón */
+    background-color: #9E6AC3;  /* Fondo lila para el botón */
+    border: none;  /* Elimina el borde por defecto */
+    border-radius: 8px;  /* Bordes redondeados */
+    cursor: pointer;  /* Cambia el cursor a mano al pasar sobre el botón */
+    transition: background-color 0.3s ease;  /* Efecto de transición para el cambio de color */
+    display: inline-block;  /* Hace que el botón se comporte como un bloque en línea */
+}
+
+.custom-file-upload:hover {
+    background-color: #7F4C9A;  /* Color de fondo cuando el botón es hover (más oscuro que el color original) */
+}
+
+#pdf-input {
+    display: none;  /* Oculta el input de archivo por defecto */
+}
+
+#summarize-button {
+    padding: 1rem 2rem;  /* Relleno alrededor del botón */
+    font-size: 1rem;  /* Establece el tamaño de la fuente del botón */
+    color: white;  /* Color del texto del botón */
+    background-color: #9E6AC3;  /* Fondo lila para el botón */
+    border: none;  /* Elimina el borde por defecto */
+    border-radius: 8px;  /* Bordes redondeados */
+    cursor: pointer;  /* Cambia el cursor a mano al pasar sobre el botón */
+    transition: background-color 0.3s ease;  /* Efecto de transición para el cambio de color */
+}
+
+#summarize-button:hover {
+    background-color: #7F4C9A;  /* Color de fondo cuando el botón es hover (más oscuro que el color original) */
+}
+
+/* Cargando */
+#loading {
+    display: none;  /* Oculta el indicador de carga por defecto */
+    margin-top: 1rem;  /* Espacio encima del indicador */
+    font-size: 1.2rem;  /* Tamaño de fuente para el texto de carga */
+    color: #B0A0C7;  /* Color de texto gris-lila */
+}
+
+.loader {
+    border: 4px solid #f3f3f3;  /* Borde gris claro para el círculo de carga */
+    border-top: 4px solid #9E6AC3;  /* Borde superior lila */
+    border-radius: 50%;  /* Hace que el loader sea un círculo */
+    width: 30px;  /* Establece el tamaño del círculo */
+    height: 30px;  /* Establece el tamaño del círculo */
+    animation: spin 1s linear infinite;  /* Animación de rotación infinita */
+    margin: 0 auto;  /* Centra el loader horizontalmente */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }  /* El círculo comienza en 0 grados */
+    100% { transform: rotate(360deg); }  /* El círculo rota 360 grados */
+}
+
+/* Resultados */
+#result {
+    margin-top: 2rem;  /* Espacio encima del área de resultados */
+    font-size: 1.2rem;  /* Tamaño de fuente para el área de resultados */
+    color: #555;  /* Color de texto gris oscuro */
+    text-align: left;  /* Alinea el texto a la izquierda */
+}
+
+#result h2 {
+    font-size: 1.5rem;  /* Tamaño de fuente para los subtítulos de los resultados */
+    color: #444;  /* Color de texto gris oscuro */
+    margin-bottom: 1rem;  /* Espacio debajo de los subtítulos */
+}
+
+#result-text {
+    background: #f9f9f9;  /* Fondo gris claro para el área de texto del resultado */
+    padding: 1rem;  /* Relleno alrededor del texto */
+    border-radius: 8px;  /* Bordes redondeados */
+    border: 1px solid #ddd;  /* Borde gris claro */
+}
+
+/* Clases utilitarias */
+.hidden {
+    display: none;  /* Clase para ocultar elementos */
+}
