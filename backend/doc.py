@@ -52,7 +52,7 @@ def summarize_file():
         # Crea una solicitud de resumen a Groq, enviando el texto extraído
         response = qclient.chat.completions.create(
             messages=[
-                {"role": "system", "content": "En base al texto etiquetar y darme solo: Votos de Noboa, Votos Luisa, Votos Nulo. Una vez contado quiero que cuentes cuantos votos tiene el nulo"},  # Instrucciones al asistente
+                {"role": "system", "content": "En base al texto etiquetar: Votos de Noboa, Votos Luisa, Votos Nulo. Una vez contado quiero que cuentes cuantos votos tiene el nulo y me des una conclusión"},  # Instrucciones al asistente
                 {"role": "user", "content": text[:3000]},  # El texto extraído (limitado a 3000 caracteres)
             ],
             model="mixtral-8x7b-32768"  # El modelo a utilizar para el resumen

@@ -17,8 +17,8 @@ body {
     padding: 2rem;  /* Relleno de 2rem alrededor del contenedor */
     border-radius: 15px;  /* Bordes redondeados */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);  /* Sombra para dar efecto de profundidad */
-    max-width: 500px;  /* Establece un ancho máximo para el contenedor */
-    width: 100%;  /* El contenedor ocupa todo el ancho disponible */
+    max-width: 1000px;  /* Establece un ancho máximo para el contenedor */
+    width: 300%;  /* El contenedor ocupa todo el ancho disponible */
 }
 
 h1 {
