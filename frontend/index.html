@@ -9,15 +9,15 @@
 </head>
 <body>
     <div class="container">
-        <h1>Resumen de Archivos</h1>
-        <p class="subtitle">Sube un archivo (PDF, Excel, XML o CSV) para obtener un resumen.</p>
+        <h1>Predicción Electoral</h1>
+        <p class="subtitle">Sube un archivo (xlsx) para obtener un resumen.</p>
 
         <div class="upload-section">
             <label for="file-input" class="custom-file-upload">
                 <span id="file-label">Seleccionar Archivo</span>
             </label>
-            <input type="file" id="file-input" accept=".pdf,.xlsx,.xml,.csv">
-            <button id="summarize-button" class="hidden">Generar Resumen</button>
+            <input type="file" id="file-input" accept=".xlsx">
+            <button id="summarize-button" class="hidden">Generar Predicción Electoral</button>
         </div>
 
         <div id="loading" class="hidden">
@@ -26,9 +26,11 @@
         </div>
 
         <div id="result" class="hidden">
-            <h2>Resumen:</h2>
+            <h2>Resumen electoral:</h2>
             <p id="result-text"></p>
         </div>
+
+       
     </div>
 
     <script src="app.js"></script>

@@ -4,10 +4,7 @@ from flask import Flask, request, jsonify  # Flask es un micro-framework para ap
 from flask_cors import CORS  # CORS se utiliza para permitir solicitudes de diferentes dominios
 from dotenv import load_dotenv  # Carga las variables de entorno desde un archivo .env
 from groq import Groq  # Biblioteca para interactuar con la API de Groq
-import PyPDF2  # Para leer archivos PDF
 import pandas as pd  # Biblioteca para manipular datos estructurados (como archivos Excel y CSV)
-import xml.etree.ElementTree as ET  # Para parsear archivos XML
-import csv  # Para leer archivos CSV
 
 # Cargar variables de entorno desde el archivo .env
 load_dotenv()
@@ -22,27 +19,12 @@ if not api_key:  # Si no se encuentra la clave de API, lanza un error
     raise ValueError("Falta la API Key de Groq en el archivo .env")
 qclient = Groq(api_key=api_key)  # Crea un cliente de Groq utilizando la clave de API
 
-# Función para extraer texto de archivos PDF
-def extract_text_from_pdf(pdf_file):
-    pdf_reader = PyPDF2.PdfReader(pdf_file)  # Crea un lector de archivos PDF
-    text = "".join([page.extract_text() for page in pdf_reader.pages if page.extract_text()])  # Extrae el texto de cada página del PDF
-    return text  # Devuelve el texto extraído
 
 # Función para extraer texto de archivos Excel (XLSX)
 def extract_text_from_excel(excel_file):
     df = pd.read_excel(excel_file)  # Lee el archivo Excel y lo convierte en un DataFrame de pandas
     return df.to_string()  # Convierte el DataFrame en una cadena de texto
 
-# Función para extraer texto de archivos XML
-def extract_text_from_xml(xml_file):
-    tree = ET.parse(xml_file)  # Analiza el archivo XML
-    root = tree.getroot()  # Obtiene el nodo raíz del árbol XML
-    return " ".join([element.text.strip() for element in root.iter() if element.text and element.text.strip()])  # Extrae y limpia el texto de cada elemento del XML
-
-# Función para extraer texto de archivos CSV
-def extract_text_from_csv(csv_file):
-    df = pd.read_csv(csv_file)  # Lee el archivo CSV y lo convierte en un DataFrame de pandas
-    return df.to_string()  # Convierte el DataFrame en una cadena de texto
 
 # Ruta para manejar la subida de archivos y generar un resumen
 @app.route('/summarize-file', methods=['POST'])  # Define una ruta de la API para manejar solicitudes POST a '/summarize-file'
@@ -58,14 +40,8 @@ def summarize_file():
         print(f"📂 Archivo recibido: {file.filename}")  # Imprime el nombre del archivo para depuración
 
         # Dependiendo de la extensión del archivo, llama a la función correspondiente para extraer el texto
-        if file_extension == 'pdf':
-            text = extract_text_from_pdf(file)
-        elif file_extension == 'xlsx':
+        if file_extension == 'xlsx':
             text = extract_text_from_excel(file)
-        elif file_extension == 'xml':
-            text = extract_text_from_xml(file)
-        elif file_extension == 'csv':
-            text = extract_text_from_csv(file)
         else:
             return jsonify({"error": "Formato de archivo no soportado"}), 400  # Si el formato no es soportado, devuelve un error
 
@@ -76,7 +52,7 @@ def summarize_file():
         # Crea una solicitud de resumen a Groq, enviando el texto extraído
         response = qclient.chat.completions.create(
             messages=[
-                {"role": "system", "content": "Eres un asistente que resume documentos en español."},  # Instrucciones al asistente
+                {"role": "system", "content": "En base al texto etiquetar y darme solo: Votos de Noboa, Votos Luisa, Votos Nulo. Una vez contado quiero que cuentes cuantos votos tiene el nulo"},  # Instrucciones al asistente
                 {"role": "user", "content": text[:3000]},  # El texto extraído (limitado a 3000 caracteres)
             ],
             model="mixtral-8x7b-32768"  # El modelo a utilizar para el resumen
